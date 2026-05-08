@@ -6,22 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-   public function up()
-{
-    Schema::create('aspirations', function (Blueprint $table) {
-        $table->id();
-        $table->string('pengirim')->nullable(); // Bisa dikosongkan untuk anonim
-        $table->text('pesan');
-        $table->timestamps();
-    });
-}
+    public function up(): void
+    {
+        Schema::create('aspirations', function (Blueprint $table) {
+            $table->id();
+            $table->string('nim'); 
+            $table->text('pesan'); 
+            $table->timestamps();
+        });
+    }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('aspirations');
