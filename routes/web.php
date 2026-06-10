@@ -30,3 +30,20 @@ Route::delete('/aspirasi-delete/{id}', [HmitController::class, 'destroyAspiratio
 Route::get('/admin', [HmitController::class, 'admin'])->name('admin');
 Route::delete('/member-delete/{id}', [HmitController::class, 'destroyMember'])->name('member.delete');
 Route::delete('/aspirasi-delete/{id}', [HmitController::class, 'destroyAspiration'])->name('aspirasi.delete');
+
+use App\Http\Controllers\RawSqlProductController;
+use App\Http\Controllers\QueryBuilderProductController;
+
+// Route Group untuk Teknik 1: Raw SQL
+Route::prefix('raw-sql')->name('raw-sql.')->group(function () {
+    Route::get('/', [RawSqlProductController::class, 'index'])->name('index');
+    Route::post('/store', [RawSqlProductController::class, 'store'])->name('store');
+    Route::delete('/destroy/{id}', [RawSqlProductController::class, 'destroy'])->name('destroy');
+});
+
+// Route Group untuk Teknik 2: Query Builder
+Route::prefix('query-builder')->name('query-builder.')->group(function () {
+    Route::get('/', [QueryBuilderProductController::class, 'index'])->name('index');
+    Route::post('/store', [QueryBuilderProductController::class, 'store'])->name('store');
+    Route::delete('/destroy/{id}', [QueryBuilderProductController::class, 'destroy'])->name('destroy');
+});
